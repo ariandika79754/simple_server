@@ -1,17 +1,45 @@
+// Import package/library express
 const express = require('express');
 
-// create an instance of express
+// Initialization application expressJS
 const app = express();
 
-// define the port to be used
-const PORT = 1945;
+const PORT = 4000;
 
-// basic rule that responds with a message "hello Ari"
+// Parsing JSON body
+app.use(express.json({ limit: '50mb' }));
+
+// Parsing URL-encoded data
+app.use(express.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit: 50000,
+}));
+
+/**
+ * Req adalah Request
+ * Res adalah Response
+ */
 app.get('/', (req, res) => {
-    res.send("Hello my name is Ari Andika Leva Pratama");
+  return res.status(200).send("Hello my name is Ari Andika");
 });
 
-// start the server on the defined port
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+app.post('/', (req, res) => {
+  return res.status(201).send("Ini adalah HTTP Method POST");
+})
+
+app.get('/:id', (req, res) => {
+  return res.status(200).send(`Hello, World from ${req.params.id}`);
 });
+
+app.put('/', (req, res) => {
+  return res.status(200).send("Ini adalah HTTP Method PUT");
+})
+
+app.delete('/', (req, res) => {
+  return res.status(200).send("Ini adalah HTTP Method DELETE");
+})
+
+app.listen(PORT, () => {
+  console.log(`Server is running in http://localhost:${PORT}`);
+})
