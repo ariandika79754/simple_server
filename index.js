@@ -29,7 +29,7 @@ app.post('/', (req, res) => {
 })
 
 app.get('/:id', (req, res) => {
-  return res.status(200).send(`Hello, World from ${req.params.id}`);
+  return res.status(200).send(`Hello, Selamat datang ${req.params.id}`);
 });
 
 app.put('/', (req, res) => {
